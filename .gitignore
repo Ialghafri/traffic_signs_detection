@@ -1,0 +1,14 @@
+# Exclude Python virtual environment
+.venv/
+.ipynb_checkpoints
+Google Collab/
+car/
+inferences/
+runs/
+runs2/
+Speed 10 images/
+video.mp4
+video2.mp4
+yolov8n.pt 
+archive-4/
+Week 7 Image detection.code-workspace
