@@ -1,5 +1,4 @@
 from fastapi import FastAPI, UploadFile, File
-from main import uploaded_file
 from PIL import Image
 from ultralytics import YOLO
 from fastapi.responses import JSONResponse, FileResponse
