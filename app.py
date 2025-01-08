@@ -2,6 +2,11 @@ import streamlit as st
 import requests
 from PIL import Image
 import matplotlib.pyplot as plt
+from io import BytesIO
+#from main import result
+#from main import annotated_image
+import os
+from main import predict
 
 
 FASTAPI_URL = "http://127.0.0.1:8000"
@@ -19,13 +24,38 @@ if uploaded_file is not None:
     # Send image to backend
     with st.spinner("Classifying..."):
         response = requests.post("http://127.0.0.1:8000/predict/", files={"file": uploaded_file.getvalue()})
+        
         if response.status_code == 200:
             result = response.json()
             st.write(f"Predicted Classes: {result['predicted_classes']}")
+            st.image("annotated-images/annotated_file", caption="Annotated Image with Bounding Boxes", use_container_width=True)
+            #annotated_image_response = requests.get(f"{FASTAPI_URL}/predict/annotated-image")
+
+            # if annotated_image_response.status_code == 200:
+            #     annotated_image = Image.open(BytesIO(annotated_image_response.content))
+            #     st.image(annotated_image, caption="Annotated Image with Bounding Boxes", use_column_width=True)
+            # else:
+            #     st.error("Failed to load annotated image.")
+
+            
         else:
             st.error(f"Error: {response.json()['error']}")
 
 
+
+
+
+            # image = read_imagefile(file.read())
+
+            # annotated_image_response = requests.get("http://127.0.0.1:8000/predict/annotated-image")
+            # annotated_image = Image.open(BytesIO(annotated_image_response.content))
+            # st.image(annotated_image, caption="annotated Image with Bounding Boxes", use_column_width = True)
+
+
+
+#      request = requests.get("http://127.0.0.1:8000/predict/", files={"result": file.getvalue()})
+#             # Show the annotated image
+#           st.image(annotated_image, caption="Annotated Image with Bounding Boxes", use_column_width=True)
 
 
 # #upload
