@@ -62,10 +62,5 @@ async def predict(file: UploadFile = File(...)):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    subprocess.run(["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"])
 
-
-
-# Imporvements 
-# -- import subprocess - include reload= True | "--reload"
-# -- c1, c2, c3 = st.columns[(1,3,1)]

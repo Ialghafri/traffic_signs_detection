@@ -20,7 +20,7 @@ if uploaded_file is not None:
     c1, c2, c3 = st.columns([0.1,10,0.1])
     with c2:
         st.image(image, caption="Uploaded Image", use_container_width=True)
-    
+   
 
     # Send image to backend
     with st.spinner("Classifying..."):
