@@ -1,0 +1,31 @@
+# setting Base Image
+FROM python:3.10-slim
+
+# Install poetry
+RUN pip install poetry
+
+# set the Working Directory
+WORKDIR /app
+
+# Install required libraries for OpenCV and GTK
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libglib2.0-dev
+
+# Copy project files
+COPY pyproject.toml poetry.lock ./
+
+# Configure poetry and install dependencies
+RUN poetry lock \
+    && poetry config virtualenvs.create false \  
+    && poetry install --no-interaction --no-ansi --no-root
+ 
+# copy the Application Code
+COPY . . 
+
+# expose the Port for API
+EXPOSE 5000
+
+# define the Command to Run the App
+CMD ["poetry", "run", "python", "main.py"]
