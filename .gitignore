@@ -12,7 +12,10 @@ video2.mp4
 yolov8n.pt 
 archive-4/
 Week 7 Image detection.code-workspace
-
+annotated-images/annotated_Unknown.png
+server/best.pt
+server/runs/detect
+traffic_sign_inferencing
 
 
 # .gitignore generator
